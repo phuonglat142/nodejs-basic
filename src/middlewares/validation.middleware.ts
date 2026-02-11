@@ -1,25 +1,25 @@
 // middleware/validationMiddleware.ts
-import { Request, Response, NextFunction } from "express";
-import { z, ZodError } from "zod";
+import { MiddlewareFunction, ValidateInput } from "types/middleware.type";
 
-export const validateBody = (schema: z.ZodObject) => {
-  return (req: Request, res: Response, next: NextFunction) => {
-    try {
-      schema.parse(req.body);
-    } catch (error) {
-      if (error instanceof ZodError) {
-        // Handle validation errors specifically
-        const errorMessages = error.issues.map((issue) => ({
-          message: `${issue.path.join(".")} is ${issue.message}`,
-        }));
-        return res.status(400).json({
-          error: "Invalid data",
-          details: errorMessages,
-        });
-      }
-      res.status(500).json({
-        error: "Internal Server Error",
+export const validateBody: ValidateInput =
+  (schema): MiddlewareFunction =>
+  (req, res, next) => {
+    const result = schema.safeParse({
+      body: req.body,
+      query: req.query,
+      params: req.params,
+    });
+
+    if (!result.success) {
+      return res.status(400).json({
+        status: "error",
+        message: "Lỗi khi xác thực dữ liệu",
+        errors: result.error.issues.map((err) => ({
+          path: err.path.join("."),
+          message: err.message,
+          code: err.code,
+        })),
       });
     }
+    next();
   };
-};
