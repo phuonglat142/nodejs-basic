@@ -1,4 +1,4 @@
-import { NextFunction, Request, RequestHandler, Response } from "express";
+import type { NextFunction, Request, RequestHandler, Response } from "express";
 
 const asyncHandler = <T extends Request = Request>(
   fn: (req: T, res: Response, next: NextFunction) => Promise<any>,

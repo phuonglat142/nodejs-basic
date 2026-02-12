@@ -1,13 +1,19 @@
-import { email, z } from "zod";
+import { z } from "zod";
 
-export const createUserSchema = z.object({
+const createUserBody = z.object({
   email: z.email(),
   name: z.string().min(2).max(100),
 });
 
-export const updateUserSchema = createUserSchema.partial().extend({
-  id: z.string(),
+export const createUserSchema = z.object({
+  body: createUserBody,
 });
 
-export type CreateUserInput = z.infer<typeof createUserSchema>;
+export const updateUserSchema = z.object({
+  body: createUserBody.partial().extend({
+    id: z.string(),
+  }),
+});
+
+export type CreateUserInput = z.infer<typeof createUserBody>;
 export type UpdateUserInput = z.infer<typeof updateUserSchema>;

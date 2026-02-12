@@ -5,7 +5,7 @@ import {
   getUserByIdAPI,
   updateUserAPI,
 } from "controllers/user.controller";
-import express, { Express } from "express";
+import express, { type Express } from "express";
 import { validateBody } from "middlewares/validation.middleware";
 import {
   createUserSchema,

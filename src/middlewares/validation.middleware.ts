@@ -1,5 +1,5 @@
 // middleware/validationMiddleware.ts
-import { MiddlewareFunction, ValidateInput } from "types/middleware.type";
+import type { MiddlewareFunction, ValidateInput } from "types/middleware.type";
 
 export const validateBody: ValidateInput =
   (schema): MiddlewareFunction =>

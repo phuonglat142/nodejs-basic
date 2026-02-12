@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import type { Request, Response } from "express";
 import {
   createUser,
   deleteUser,
@@ -6,8 +6,11 @@ import {
   getUserById,
   updateUser,
 } from "services/user.services";
-import { RequestBody } from "types/express";
-import { CreateUserInput, UpdateUserInput } from "validations/user.validation";
+import type { RequestBody } from "types/express";
+import type {
+  CreateUserInput,
+  UpdateUserInput,
+} from "validations/user.validation";
 
 const getAllUsersAPI = async (req: Request, res: Response) => {
   const data = await getAllUser();
