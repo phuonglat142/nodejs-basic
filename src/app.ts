@@ -2,6 +2,7 @@ import "dotenv/config";
 import express, { type ErrorRequestHandler } from "express";
 import cors from "cors";
 import apiRoutes from "routes/api";
+import { setupSwagger } from "configs/swagger";
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -16,6 +17,9 @@ app.use(
         origin: "*",
     })
 );
+
+//swagger
+setupSwagger(app);
 
 //routes
 apiRoutes(app);

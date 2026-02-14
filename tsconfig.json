@@ -20,7 +20,8 @@
       "validations/*": ["./src/validations/*"],
       "types/*": ["./src/types/*"],
       "middlewares/*": ["./src/middlewares/*"],
-      "utils/*": ["./src/utils/*"]
+      "utils/*": ["./src/utils/*"],
+      "configs/*": ["./src/configs/*"]
     }
   },
   "include": ["src/**/*"],
