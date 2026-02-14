@@ -10,11 +10,24 @@ datasource db {
   provider = "sqlite"
 }
 
+model Gender {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  users User[]
+}
+
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
-  posts Post[]
+  id          Int      @id @default(autoincrement())
+  email       String   @unique
+  name        String
+  gender      Gender   @relation(fields: [genderId], references: [id])
+  genderId    Int
+  phoneNumber String
+  address     String
+  dateOfBirth DateTime
+  description String?
+  posts       Post[]
 }
 
 model Post {

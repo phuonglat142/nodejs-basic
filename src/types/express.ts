@@ -1,3 +1,7 @@
 import type { Request } from "express";
 
-export type RequestBody<T> = Request<any, any, T>;
+export type TypedRequest<TBody = any, TParams = Record<string, string>> = Request<
+    TParams,
+    any,
+    TBody
+>;

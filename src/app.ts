@@ -12,9 +12,9 @@ app.use(express.urlencoded({ extended: true }));
 
 //cors config
 app.use(
-  cors({
-    origin: "*",
-  }),
+    cors({
+        origin: "*",
+    })
 );
 
 //routes
@@ -22,17 +22,17 @@ apiRoutes(app);
 
 //global error handler
 const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
-  console.error(err.stack);
-  const status = err.statusCode || 500;
-  res.status(status).json({
-    status: "error",
-    statusCode: status,
-    message: err.message || "Internal Server Error",
-  });
+    console.error(err.stack);
+    const status = err.statusCode || 500;
+    res.status(status).json({
+        status: "error",
+        statusCode: status,
+        message: err.message || "Internal Server Error",
+    });
 };
 
 app.use(errorHandler);
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+    console.log(`Server is running on port ${PORT}`);
 });

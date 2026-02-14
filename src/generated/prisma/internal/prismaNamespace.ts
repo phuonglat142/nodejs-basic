@@ -384,6 +384,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 
 export const ModelName = {
+  Gender: 'Gender',
   User: 'User',
   Post: 'Post'
 } as const
@@ -401,10 +402,84 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "post"
+    modelProps: "gender" | "user" | "post"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
+    Gender: {
+      payload: Prisma.$GenderPayload<ExtArgs>
+      fields: Prisma.GenderFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.GenderFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GenderPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.GenderFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GenderPayload>
+        }
+        findFirst: {
+          args: Prisma.GenderFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GenderPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.GenderFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GenderPayload>
+        }
+        findMany: {
+          args: Prisma.GenderFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GenderPayload>[]
+        }
+        create: {
+          args: Prisma.GenderCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GenderPayload>
+        }
+        createMany: {
+          args: Prisma.GenderCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.GenderCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GenderPayload>[]
+        }
+        delete: {
+          args: Prisma.GenderDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GenderPayload>
+        }
+        update: {
+          args: Prisma.GenderUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GenderPayload>
+        }
+        deleteMany: {
+          args: Prisma.GenderDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.GenderUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.GenderUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GenderPayload>[]
+        }
+        upsert: {
+          args: Prisma.GenderUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GenderPayload>
+        }
+        aggregate: {
+          args: Prisma.GenderAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateGender>
+        }
+        groupBy: {
+          args: Prisma.GenderGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GenderGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.GenderCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GenderCountAggregateOutputType> | number
+        }
+      }
+    }
     User: {
       payload: Prisma.$UserPayload<ExtArgs>
       fields: Prisma.UserFieldRefs
@@ -589,10 +664,23 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+export const GenderScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+} as const
+
+export type GenderScalarFieldEnum = (typeof GenderScalarFieldEnum)[keyof typeof GenderScalarFieldEnum]
+
+
 export const UserScalarFieldEnum = {
   id: 'id',
   email: 'email',
-  name: 'name'
+  name: 'name',
+  genderId: 'genderId',
+  phoneNumber: 'phoneNumber',
+  address: 'address',
+  dateOfBirth: 'dateOfBirth',
+  description: 'description'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -642,6 +730,13 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'String'
  */
 export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
+    
+
+
+/**
+ * Reference to a field of type 'DateTime'
+ */
+export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
     
 
 
@@ -753,6 +848,7 @@ export type PrismaClientOptions = ({
   comments?: runtime.SqlCommenterPlugin[]
 }
 export type GlobalOmitConfig = {
+  gender?: Prisma.GenderOmit
   user?: Prisma.UserOmit
   post?: Prisma.PostOmit
 }
